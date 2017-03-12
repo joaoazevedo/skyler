@@ -58,7 +58,7 @@ function receivedMessage(event) {
 
 // 
 app.get('/', function (req, res) {
-  res.send('Hello World!!! How can I serve you?')
+  res.send('Hello World!!! Skyler here!')
 })
 
 // Start listening on server port
