@@ -1,10 +1,23 @@
 var express = require('express');
 var request = require('request');
 var conf = require('configure');
-var body = require('body-parser');
+var parser = require('body-parser');
+var mongo = require('mongodb').MongoClient;
 var app = express();
+var db;
 
-app.use(body.json());
+app.use(parser.json());
+
+mongo.connect(config.mongo.user + ':' + config.mongo.pwd + '@'+ config.mongo.server + ':' + config.mongo.port + '/' + config.mongo.db, function(err, database) {
+    if (err) return console.log(err);
+    db = database;
+
+    // Start server listening
+    app.listen(conf.server_port, function(){
+        console.log('Butler is listening on port ' + conf.server_port);
+    });
+});
+
 
 // FB Messenger Webhook test
 app.get('/webhook', function(req, res) {
@@ -56,14 +69,18 @@ function receivedMessage(event) {
   console.log("Message data: ", event.message);
 }
 
+
+app.post('/user', function(req, res) {
+    if (!req.body) return res.sendStatus(400);
+    else {
+        console.log("POST user:");
+        console.log(req.body);
+        res.sendStatus(200);
+    }
+});
+
 app.get('*', function(req, res) {
-    console.log(req.originalUrl);
-    console.log(req.baseUrl);
     console.log(req.path);
+    res.status(404);
+    res.send(req.path);
 });
-
-// Start listening on: server port
-app.listen(conf.server_port, function(){
-    console.log('Butler is listening on port ' + conf.server_port);
-});
-

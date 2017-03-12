@@ -1,1 +1,3 @@
-In production server a "config.json" must be made available
+{
+  "server_port": 3000
+}
