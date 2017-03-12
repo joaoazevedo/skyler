@@ -8,7 +8,8 @@ var db;
 
 app.use(parser.json());
 
-mongo.connect(conf.mongo.user + ':' + conf.mongo.pwd + '@'+ conf.mongo.server + ':' + conf.mongo.port + '/' + conf.mongo.db, function(err, database) {
+mongo.connect('mongodb://' + conf.mongo.user + ':' + conf.mongo.pwd + '@'+
+    conf.mongo.server + ':' + conf.mongo.port + '/' + conf.mongo.db, function(err, database) {
     if (err) return console.log(err);
     db = database;
 
