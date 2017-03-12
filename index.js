@@ -62,7 +62,9 @@ app.get('/', function (req, res) {
 });
 
 app.get('*', function(req, res) {
-    console.log('Received request:' + req)
+    console.log(req.originalUrl);
+    console.log(req.baseUrl);
+    console.log(req.path);
 });
 
 // Start listening on: server port
