@@ -56,11 +56,6 @@ function receivedMessage(event) {
   console.log("Message data: ", event.message);
 }
 
-// 
-app.get('/', function (req, res) {
-  res.send('Hello World!!! Skyler here!')
-});
-
 app.get('*', function(req, res) {
     console.log(req.originalUrl);
     console.log(req.baseUrl);
