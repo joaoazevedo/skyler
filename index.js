@@ -1,10 +1,10 @@
-var express = require('express')
-var request = require('request')
-var conf = require('configure')
-var body = require('body-parser')
-var app = express()
+var express = require('express');
+var request = require('request');
+var conf = require('configure');
+var body = require('body-parser');
+var app = express();
 
-app.use(body.json())
+app.use(body.json());
 
 // FB Messenger Webhook test
 app.get('/webhook', function(req, res) {
@@ -59,9 +59,13 @@ function receivedMessage(event) {
 // 
 app.get('/', function (req, res) {
   res.send('Hello World!!! Skyler here!')
-})
+});
 
-// Start listening on server port
+app.get('*', function(req, res) {
+    console.log('Received request:' + req)
+});
+
+// Start listening on: server port
 app.listen(conf.server_port, function(){
     console.log('Butler is listening on port ' + conf.server_port);
 });

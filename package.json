@@ -1,22 +1,22 @@
 {
-  "name": "sky_butler",
+  "name": "skyler",
   "version": "0.0.1",
-  "description": "Sky Butler",
+  "description": "Skyler",
   "main": "index.js",
   "scripts": {
-    "start": "forever start index.js",
+    "start": "forever start -l ../log/skyler/skyler.log -o ../log/skyler/skyler.out -e ../log/skyler/skyler.err --append --uid \"skyler\" index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joaoazevedo/butler.git"
+    "url": "git+https://github.com/joaoazevedo/skyler.git"
   },
   "author": "João Azevedo",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/joaoazevedo/butler/issues"
+    "url": "https://github.com/joaoazevedo/skyler/issues"
   },
-  "homepage": "https://github.com/joaoazevedo/butler#readme",
+  "homepage": "https://github.com/joaoazevedo/skyler#readme",
   "dependencies": {
     "body-parser": "^1.17.0",
     "configure": "0.0.1",
