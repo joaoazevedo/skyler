@@ -1,0 +1,27 @@
+{
+  "name": "sky_butler",
+  "version": "0.0.1",
+  "description": "Sky Butler",
+  "main": "index.js",
+  "scripts": {
+    "start": "forever start index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaoazevedo/butler.git"
+  },
+  "author": "João Azevedo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaoazevedo/butler/issues"
+  },
+  "homepage": "https://github.com/joaoazevedo/butler#readme",
+  "dependencies": {
+    "body-parser": "^1.17.0",
+    "configure": "0.0.1",
+    "express": "^4.15.0",
+    "forever": "^0.15.3",
+    "request": "^2.80.0"
+  }
+}
