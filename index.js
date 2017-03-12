@@ -8,7 +8,7 @@ var db;
 
 app.use(parser.json());
 
-mongo.connect(config.mongo.user + ':' + config.mongo.pwd + '@'+ config.mongo.server + ':' + config.mongo.port + '/' + config.mongo.db, function(err, database) {
+mongo.connect(conf.mongo.user + ':' + conf.mongo.pwd + '@'+ conf.mongo.server + ':' + conf.mongo.port + '/' + conf.mongo.db, function(err, database) {
     if (err) return console.log(err);
     db = database;
 
@@ -22,7 +22,7 @@ mongo.connect(config.mongo.user + ':' + config.mongo.pwd + '@'+ config.mongo.ser
 // FB Messenger Webhook test
 app.get('/webhook', function(req, res) {
   if (req.query['hub.mode'] === 'subscribe' &&
-      req.query['hub.verify_token'] === config.fb.verify_token) {
+      req.query['hub.verify_token'] === conf.fb.verify_token) {
     console.log("Validating webhook");
     res.status(200).send(req.query['hub.challenge']);
   } else {
