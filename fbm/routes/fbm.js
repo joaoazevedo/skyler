@@ -1,10 +1,10 @@
-var app = require('express');
+var express = require('express');
 var conf = require('configure');
 var parser = require('body-parser');
-var router = app.Router();
+var router = express.Router();
 
 
-app.use(parser.json());
+router.use(parser.json());
 
 router.route('/')
     .get(function (req, res) {
