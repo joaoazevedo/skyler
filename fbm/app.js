@@ -19,7 +19,7 @@ process.on('uncaughtException', function (err) {
 app.disable('x-powered-by');
 app.disable('etag');
 
-app.use('/skyler/fbm', fbm);
+app.use('/', fbm);
 
 server.listen(app.get('port'), function(){
     console.log(conf.fbm.desc + ' is listening on port ' + conf.fbm.port);
