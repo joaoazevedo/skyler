@@ -1,5 +1,4 @@
 var express = require('express');
-var parser = require('body-parser');
 var conf = require('configure');
 
 // Routes

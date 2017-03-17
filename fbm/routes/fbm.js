@@ -1,15 +1,19 @@
 var app = require('express');
 var conf = require('configure');
+var parser = require('body-parser');
 var router = app.Router();
+
+
+app.use(parser.json());
 
 router.route('/')
     .get(function (req, res) {
         if (req.query['hub.mode'] === 'subscribe' &&
             req.query['hub.verify_token'] === conf.fb.verify_token) {
-            console.log("Validating webhook");
+            console.log(conf.fbm.desc + 'Validating webhook');
             res.status(200).send(req.query['hub.challenge']);
         } else {
-            console.error('Failed validation. Make sure the validation tokens match.');
+            console.error(conf.fbm.desc + 'Failed validation. Make sure the validation tokens match.');
             res.sendStatus(403);
         }
     })
@@ -30,7 +34,7 @@ router.route('/')
                     if (event.message) {
                         receivedMessage(event);
                     } else {
-                        console.log('Webhook received unknown event: ', event);
+                        console.log(conf.fbm.desc + 'Webhook received unknown event: ', event);
                     }
                 });
             });
@@ -49,5 +53,5 @@ module.exports = router;
 
 function receivedMessage(event) {
     // Putting a stub for now, we'll expand it in the following steps
-    console.log('Message data: ', event.message);
+    console.log(conf.fbm.desc + 'Message data: ', event.message);
 }
