@@ -10,16 +10,18 @@ router.route('/')
     .get(function (req, res) {
         if (req.query['hub.mode'] === 'subscribe' &&
             req.query['hub.verify_token'] === conf.fb.verify_token) {
-            console.log(conf.fbm.desc + 'Validating webhook');
+            console.log(conf.fbm.desc + ' - Validating webhook');
             res.status(200).send(req.query['hub.challenge']);
         } else {
-            console.error(conf.fbm.desc + 'Failed validation. Make sure the validation tokens match.');
+            console.error(conf.fbm.desc + ' - Failed validation. Make sure the validation tokens match.');
             res.sendStatus(403);
         }
     })
 
     .post(function (req, res) {
         var data = req.body;
+
+        console.log(req.body);
 
         // Make sure this is a page subscription
         if (data.object === 'page') {
@@ -34,7 +36,7 @@ router.route('/')
                     if (event.message) {
                         receivedMessage(event);
                     } else {
-                        console.log(conf.fbm.desc + 'Webhook received unknown event: ', event);
+                        console.log(conf.fbm.desc + ' - Webhook received unknown event: ', event);
                     }
                 });
             });
@@ -53,5 +55,5 @@ module.exports = router;
 
 function receivedMessage(event) {
     // Putting a stub for now, we'll expand it in the following steps
-    console.log(conf.fbm.desc + 'Message data: ', event.message);
+    console.log(conf.fbm.desc + ' - Message data: ', event.message);
 }
