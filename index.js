@@ -26,7 +26,7 @@ mongo.connect('mongodb://' + conf.mongo.user + ':' + conf.mongo.pwd + '@'+
     db = database;
 
     // Start server listening
-    app.listen(conf.server_port, function(){
+    app.listen(conf.core.port, function(){
         console.log(conf.core.desc + ' is listening on port ' + conf.core.port);
     });
 });

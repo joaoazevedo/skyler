@@ -19,6 +19,6 @@ app.disable('etag');
 
 app.use('/fbm', fbm);
 
-app.listen(conf.server_port, function(){
+app.listen(conf.fbm.port, function(){
     console.log(conf.fbm.desc + ' is listening on port ' + conf.fbm.port);
 });
