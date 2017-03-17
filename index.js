@@ -17,7 +17,7 @@ process.on('uncaughtException', function(err) {
     console.log('app.uncaughtException()', 'err', true, true, null, err.stack || err.message);
 });
 
-process.on('exit', function() {
+process.on('SIGTERM', function () {
     console.log('killing', child.length, 'child processes');
     child.forEach(function(process) {
         process.kill();
