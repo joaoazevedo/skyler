@@ -9,6 +9,8 @@ var fbm = require('./routes/fbm');
 /**** Skyler FBM configuration and initialization *******/
 /********************************************************/
 var app = express();
+var server = require('http').createServer(app);
+app.set('port', conf.fbm.port);
 
 process.on('uncaughtException', function (err) {
     console.log('app.uncaughtException()', 'err', true, true, null, err.stack || err.message)
@@ -17,8 +19,8 @@ process.on('uncaughtException', function (err) {
 app.disable('x-powered-by');
 app.disable('etag');
 
-app.use('/fbm', fbm);
+app.use('/skyler/fbm', fbm);
 
-app.listen(conf.fbm.port, function(){
+server.listen(app.get('port'), function(){
     console.log(conf.fbm.desc + ' is listening on port ' + conf.fbm.port);
 });
