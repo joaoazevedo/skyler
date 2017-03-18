@@ -21,13 +21,16 @@ router.route('/')
     .post(function (req, res) {
         var data = req.body;
 
-        console.log(req.body);
+        console.log('Req:' + req.body);
 
         // Make sure this is a page subscription
         if (data.object === 'page') {
 
             // Iterate over each entry - there may be multiple if batched
             data.entry.forEach(function(entry) {
+
+                console.log('Entry:' + entry);
+
                 var pageID = entry.id;
                 var timeOfEvent = entry.time;
 
