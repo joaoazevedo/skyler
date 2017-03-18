@@ -4,7 +4,7 @@ var parser = require('body-parser');
 var router = express.Router();
 
 
-router.use(parser.json());
+router.use(parser.json({ strict: false }));
 
 router.route('/')
     .get(function (req, res) {
