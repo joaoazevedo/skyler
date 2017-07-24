@@ -1,0 +1,26 @@
+{
+  "core": {
+    "desc": "Skyler",
+    "port": 3000
+  },
+  "fbm": {
+    "desc": "Skyler FBM",
+    "port": 3010
+  },
+  "roomba": {
+    "desc": "Skyler Roomba",
+    "port": 3020
+  },
+  "fb": {
+    "allow_verify": false,
+    "verify_token": "verify_me",
+    "page_token": "EAADQ8pgAefQBAP85TimJ42F4ZBUsg5kDtWGjlwyNC769exfyvOh0OY6RgZBtngoV7LcEhZC3gGcviCFyDUIWC6p97FK0sMY2EYytPVLkHmBByPzAdZBNoBcc0ZCKBCOrPdZBiJZBWvrRM366aUbZCixcqMENPtMSon2AJ7amYz2E7AZDZD"
+  },
+  "mongo": {
+    "server": "127.0.0.1",
+    "port": 27017,
+    "user": "skyler",
+    "pwd": "YW3e-JVwH-YWa5-7iiv",
+    "db": "skynet"
+  }
+}

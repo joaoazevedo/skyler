@@ -4,17 +4,28 @@ var parser = require('body-parser');
 var router = express.Router();
 
 
-router.use(parser.json({ strict: false }));
+router.use(parser.json());
+
+router.route('/_status')
+    .get(function (req, res) {
+        console.log(conf.fbm.desc + ' - status check');
+        res.status(200).set('Content-Type', 'application/json').json({status: 'ok'});
+    });
 
 router.route('/')
     .get(function (req, res) {
-        if (req.query['hub.mode'] === 'subscribe' &&
-            req.query['hub.verify_token'] === conf.fb.verify_token) {
-            console.log(conf.fbm.desc + ' - Validating webhook');
-            res.status(200).send(req.query['hub.challenge']);
+        if (conf.fb.allow_verify === true) {
+            if (req.query['hub.mode'] === 'subscribe' &&
+                req.query['hub.verify_token'] === conf.fb.verify_token) {
+                console.log(conf.fbm.desc + ' - Successful webhook validation');
+                res.status(200).send(req.query['hub.challenge']);
+            } else {
+                console.error(conf.fbm.desc + ' - Failed webhook validation');
+                res.sendStatus(403);
+            }
         } else {
-            console.error(conf.fbm.desc + ' - Failed validation. Make sure the validation tokens match.');
-            res.sendStatus(403);
+            console.error(conf.fbm.desc + ' - Webhook validation not enabled');
+            res.sendStatus(500);
         }
     })
 
